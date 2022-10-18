@@ -2,6 +2,7 @@ from pytorch_lightning.loggers import WandbLogger
 import pytorch_lightning as pl
 from pytorch_lightning.callbacks.early_stopping import EarlyStopping
 from TeXid import TeXidDataLoader, LitRobertaTeXid
+from transformers import RobertaTokenizer
 
 if __name__ == "__main__":
     wandb_logger = WandbLogger(project="proj_texid")
@@ -27,4 +28,8 @@ if __name__ == "__main__":
     )
     trainer.fit(model=lit_roberta_texid, train_dataloaders=train_dataloader, val_dataloaders=valid_dataloader)
     trainer.test(model=lit_roberta_texid, dataloaders=test_dataloader)
+
+    # save model & tokenizer
     lit_roberta_texid.export_model('TeXid_model/model_v1')
+    tokenizer = RobertaTokenizer.from_pretrained(tokenizer_ck)
+    tokenizer.save_pretrained("TeXid_model/model_v1")
