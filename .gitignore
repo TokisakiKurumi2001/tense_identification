@@ -184,3 +184,4 @@ proj_*/
 TeXid_model/
 wandb/
 data/
+testing.py
