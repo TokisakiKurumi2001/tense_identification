@@ -4,8 +4,7 @@ from pytorch_lightning.callbacks.early_stopping import EarlyStopping
 from TeXid import TeXidDataLoader, LitRobertaTeXid
 
 if __name__ == "__main__":
-    # wandb_logger = WandbLogger(project="proj_texid")
-    wandb_logger = WandbLogger(project="proj_dummy")
+    wandb_logger = WandbLogger(project="proj_texid")
 
     # model
     model_ck = "roberta-base"
@@ -28,5 +27,4 @@ if __name__ == "__main__":
     )
     trainer.fit(model=lit_roberta_texid, train_dataloaders=train_dataloader, val_dataloaders=valid_dataloader)
     trainer.test(model=lit_roberta_texid, dataloaders=test_dataloader)
-    # lit_roberta_texid.export_model('TeXid_model/model_v1')
-    lit_roberta_texid.export_model('proj_testing')
+    lit_roberta_texid.export_model('TeXid_model/model_v1')
