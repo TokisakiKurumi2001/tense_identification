@@ -185,3 +185,5 @@ TeXid_model/
 wandb/
 data/
 testing.py
+prepare_input_tense.py
+result.csv
