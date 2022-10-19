@@ -9,7 +9,7 @@ if __name__ == "__main__":
 
     # model
     model_ck = "roberta-base"
-    num_classes = 7
+    num_classes = 8
     layers_use_from_last = 4
     method_for_layers = 'sum'
     lit_roberta_texid = LitRobertaTeXid(
@@ -23,13 +23,13 @@ if __name__ == "__main__":
 
     # train model
     trainer = pl.Trainer(
-        max_epochs=1, logger=wandb_logger, devices=2, accelerator="gpu", strategy="ddp",
+        max_epochs=20, logger=wandb_logger, devices=2, accelerator="gpu", strategy="ddp",
         callbacks=[EarlyStopping(monitor="valid/acc_epoch", min_delta=0.00, patience=5, verbose=False, mode="max")]
     )
     trainer.fit(model=lit_roberta_texid, train_dataloaders=train_dataloader, val_dataloaders=valid_dataloader)
     trainer.test(model=lit_roberta_texid, dataloaders=test_dataloader)
 
     # save model & tokenizer
-    lit_roberta_texid.export_model('TeXid_model/model_v1')
+    lit_roberta_texid.export_model('TeXid_model/model_v2')
     tokenizer = RobertaTokenizer.from_pretrained(tokenizer_ck)
-    tokenizer.save_pretrained("TeXid_model/model_v1")
+    tokenizer.save_pretrained("TeXid_model/model_v2")

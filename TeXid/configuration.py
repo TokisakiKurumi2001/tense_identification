@@ -3,7 +3,7 @@ from transformers import RobertaConfig
 class RobertaTeXidConfig(RobertaConfig):
     model_type = "roberta_texid"
 
-    def __init__(self, model_ck="roberta-base", load_from_pretrained=False, num_classes=7, layers_use_from_last=4, method_for_layers='sum', **kwargs):
+    def __init__(self, model_ck="roberta-base", load_from_pretrained=False, num_classes=8, layers_use_from_last=4, method_for_layers='sum', **kwargs):
         """Constructs RobertaTeXidConfig."""
         super().__init__(**kwargs)
         self.num_classes = num_classes
