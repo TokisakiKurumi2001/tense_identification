@@ -24,12 +24,12 @@ if __name__ == "__main__":
     # train model
     trainer = pl.Trainer(
         max_epochs=20, logger=wandb_logger, devices=2, accelerator="gpu", strategy="ddp",
-        callbacks=[EarlyStopping(monitor="valid/acc_epoch", min_delta=0.00, patience=5, verbose=False, mode="max")]
+        callbacks=[EarlyStopping(monitor="valid/acc_epoch", min_delta=0.00, patience=1, verbose=False, mode="max")]
     )
     trainer.fit(model=lit_roberta_texid, train_dataloaders=train_dataloader, val_dataloaders=valid_dataloader)
     trainer.test(model=lit_roberta_texid, dataloaders=test_dataloader)
 
     # save model & tokenizer
-    lit_roberta_texid.export_model('TeXid_model/model_v2')
+    lit_roberta_texid.export_model('TeXid_model/model_v4')
     tokenizer = RobertaTokenizer.from_pretrained(tokenizer_ck)
-    tokenizer.save_pretrained("TeXid_model/model_v2")
+    tokenizer.save_pretrained("TeXid_model/model_v4")

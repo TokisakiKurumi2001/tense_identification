@@ -5,12 +5,13 @@ class SeqClassifierTokenizer:
         self.tokenizer = AutoTokenizer.from_pretrained(tokenizer_ck)
         self.label2id = {
             'Future Continuous': 0,
-            'Past Continuous': 1,
-            'Past Simple': 2,
-            'Present Continuous': 3,
-            'Present Perfect': 4,
-            'Present Perfect Continuous': 5,
-            'Present Simple': 6
+            'Future Simple': 1,
+            'Past Continuous': 2,
+            'Past Simple': 3,
+            'Present Continuous': 4,
+            'Present Perfect': 5,
+            'Present Perfect Continuous': 6,
+            'Present Simple': 7
         }
         self.id2label = {v: k for k, v in self.label2id.items()}
 

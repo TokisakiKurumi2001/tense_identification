@@ -1,11 +1,17 @@
-from TeXid import RobertaTeXid, SeqClassifierTokenizer
+from TeXid import PostProcess
 import torch
-ckpt = "TeXid_model/model_v1"
-tokenizer = SeqClassifierTokenizer(ckpt)
-model = RobertaTeXid.from_pretrained(ckpt)
-sentence = "I have been doing the exercise"
-batch = tokenizer.tokenize(sentence, padding='max_length', truncation=True, max_length=20, return_tensors='pt')
-logits = model(batch)
-preds = torch.argmax(logits, dim=-1).item()
-tense = tokenizer.convertId2Label(preds)
-print(tense)
+ckpt = "TeXid_model/model_v4"
+postprocess = PostProcess(ckpt)
+sents = [
+    "I will be there",
+    "I will be working over there",
+    "I have joined the project",
+    "I work as a teacher",
+    "I have been working there for 2 years and a half",
+    "I was at home",
+    "I was dealing with this problems",
+    "I ran into trouble yesterday",
+    "I am performing a research",
+]
+for sent in sents:
+    print(postprocess(sent))
