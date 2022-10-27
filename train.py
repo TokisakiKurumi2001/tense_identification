@@ -30,6 +30,6 @@ if __name__ == "__main__":
     trainer.test(model=lit_roberta_texid, dataloaders=test_dataloader)
 
     # save model & tokenizer
-    lit_roberta_texid.export_model('TeXid_model/model_v4')
+    lit_roberta_texid.export_model('TeXid_model/model_v5')
     tokenizer = RobertaTokenizer.from_pretrained(tokenizer_ck)
-    tokenizer.save_pretrained("TeXid_model/model_v4")
+    tokenizer.save_pretrained("TeXid_model/model_v5")
