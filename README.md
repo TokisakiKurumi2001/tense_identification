@@ -13,3 +13,30 @@ Tense transformation take advantages of tense identification and other libraries
 **Repo**: [tense_transformation](https://github.com/TokisakiKurumi2001/tense_transformation)
 
 **NOTE**: Just a toy repo I try to deploy on PyPI.
+
+## How to run this repo
+
+1. Create environment
+
+```bash
+conda create -f environment.yml
+```
+
+2. Install TeXid library
+
+```bash
+pip install -e .
+```
+
+Or you can install from PyPI (**not recommend**)
+```bash
+pip install TeXid
+```
+
+3. Train the model
+
+```bash
+python train.py
+```
+
+**NOTE**: Under no circumstance am I responsile for getting you into trouble while running the code. Just check the code before running it. Cheers and have a good day.
